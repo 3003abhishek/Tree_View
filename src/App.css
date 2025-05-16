@@ -50,3 +50,8 @@ background-color: #dfdfdf;
 td.dx-treelist-cell-expandable , td#dx-col-7{
   padding: 10px !important;
 }
+#employees {
+  border: 1px solid #dfdfdf;
+  border-radius: 20px;
+  overflow: hidden;
+}
