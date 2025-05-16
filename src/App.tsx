@@ -25,7 +25,7 @@ const App = () => {
     setExpandedRowKeys([1]);
   }, []);
 
-  const onDragChange = (e:any) => {
+  const onDragChange = (e: any) => {
     const visibleRows = e.component.getVisibleRows();
     const sourceNode = e.component.getNodeByKey(e.itemData.ID);
     let targetNode = visibleRows[e.toIndex].node;
@@ -39,7 +39,7 @@ const App = () => {
     }
   };
 
-  const onReorder = useCallback((e:any) => {
+  const onReorder = useCallback((e: any) => {
     const visibleRows = e.component.getVisibleRows();
     let sourceData = e.itemData;
     const updatedEmployees = [...employees];
@@ -74,18 +74,47 @@ const App = () => {
   return (
     <div>
 
-      <div style={{ marginBottom: '10px' }}>
-        <Button
-          text="Expand All"
-          onClick={expandAll}
-          stylingMode="contained"
-          style={{ marginRight: '10px' }}
-        />
-        <Button
-          text="Collapse All"
-          onClick={collapseAll}
-          stylingMode="outlined"
-        />
+
+      <div className='banner'>
+        <div className="options">
+          <div className="caption">Options</div>
+          <div className="options-container">
+            <div className="option">
+              <CheckBox
+                value={allowDropInsideItem}
+                text="Allow Drop Inside Item"
+                onValueChange={(newValue) => setAllowDropInsideItem(!!newValue)}
+              />
+            </div>
+            <div className="option">
+              <CheckBox
+                value={allowReordering}
+                text="Allow Reordering"
+                onValueChange={(newValue) => setAllowReordering(!!newValue)}
+              />
+            </div>
+            <div className="option">
+              <CheckBox
+                value={showDragIcons}
+                text="Show Drag Icons"
+                onValueChange={(newValue) => setShowDragIcons(!!newValue)}
+              />
+            </div>
+          </div>
+        </div>
+        <div style={{ marginBottom: '10px' }}>
+          <Button
+            text="Expand All"
+            onClick={expandAll}
+            stylingMode="contained"
+            style={{ marginRight: '10px' }}
+          />
+          <Button
+            text="Collapse All"
+            onClick={collapseAll}
+            stylingMode="outlined"
+          />
+        </div>
       </div>
 
       <TreeList
@@ -115,32 +144,7 @@ const App = () => {
         <Column dataField="Hire_Date" dataType="date" />
       </TreeList>
 
-      <div className="options">
-        <div className="caption">Options</div>
-        <div className="options-container">
-          <div className="option">
-            <CheckBox
-              value={allowDropInsideItem}
-              text="Allow Drop Inside Item"
-              onValueChange={(newValue) => setAllowDropInsideItem(!!newValue)}
-            />
-          </div>
-          <div className="option">
-            <CheckBox
-              value={allowReordering}
-              text="Allow Reordering"
-              onValueChange={(newValue) => setAllowReordering(!!newValue)}
-            />
-          </div>
-          <div className="option">
-            <CheckBox
-              value={showDragIcons}
-              text="Show Drag Icons"
-              onValueChange={(newValue) => setShowDragIcons(!!newValue)}
-            />
-          </div>
-        </div>
-      </div>
+
     </div>
   );
 };
